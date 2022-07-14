@@ -35,4 +35,22 @@ steps:
       ./playbooks/apache-install.yml 
   displayName: "Installing Apache"
 
+- script: |
+    ANSIBLE_HOST_KEY_CHECKING=False \
+    export ANSIBLE_ROLES_PATH=./roles && \
+    ansible-playbook \
+      -u ubuntu \
+      -i ./host_inventory \
+      --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem' \
+      ./playbooks/website-update.yml 
+  displayName: "Running Website-Update"
 
+- script: |
+    ANSIBLE_HOST_KEY_CHECKING=False \
+    export ANSIBLE_ROLES_PATH=./roles && \
+    ansible-playbook \
+      -u ubuntu \
+      -i ./host_inventory \
+      --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem' \
+      ./playbooks/website-test.yml 
+  displayName: "Running Website-Test"
