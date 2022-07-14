@@ -25,3 +25,14 @@ steps:
 - script: |
     ansible-lint
   displayName: "Run ansible-lint"
+
+- script: |
+    ANSIBLE_HOST_KEY_CHECKING=False
+    ansible-playbook \
+      -u ubuntu \
+      -i ./host_inventory \
+      --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem'
+      ./playbooks/apache-install.yml 
+  displayName: "Installing Apache"
+
+
