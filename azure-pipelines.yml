@@ -31,7 +31,7 @@ steps:
     ansible-playbook \
       -u ubuntu \
       -i ./host_inventory \
-      --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem'
+      --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem' \
       ./playbooks/apache-install.yml 
   displayName: "Installing Apache"
 
