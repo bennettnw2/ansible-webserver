@@ -8,49 +8,27 @@ pool:
 steps:
 
 - script: |
-    echo "First pipeline Script"
-    echo "Another line of code"
+    echo 'First pipeline Script'
+    echo 'Another line of code'
 
 - script: |
     sudo apt update -y
     sudo apt install -y ansible
     ansible --version
-  displayName: "Installing Ansible"
+  displayName: 'Installing Ansible'
 
 - script: |
     sudo apt install -y ansible-lint
     ansible-lint --version
-  displayName: "Installing Ansible-lint"
+  displayName: 'Installing Ansible-lint'
 
 - script: |
     ansible-lint
-  displayName: "Run ansible-lint"
+  displayName: 'Run ansible-lint'
 
-- script: |
-    ANSIBLE_HOST_KEY_CHECKING=False \
-    ansible-playbook \
-      -u ubuntu \
-      -i ./host_inventory \
-      --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem' \
-      ./playbooks/apache-install.yml 
-  displayName: "Installing Apache"
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)'
+    ArtifactName: 'ansible-artifact'
+    publishLocation: 'Container'
 
-- script: |
-    ANSIBLE_HOST_KEY_CHECKING=False \
-    export ANSIBLE_ROLES_PATH=./roles && \
-    ansible-playbook \
-      -u ubuntu \
-      -i ./host_inventory \
-      --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem' \
-      ./playbooks/website-update.yml 
-  displayName: "Running Website-Update"
-
-- script: |
-    ANSIBLE_HOST_KEY_CHECKING=False \
-    export ANSIBLE_ROLES_PATH=./roles && \
-    ansible-playbook \
-      -u ubuntu \
-      -i ./host_inventory \
-      --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem' \
-      ./playbooks/website-test.yml 
-  displayName: "Running Website-Test"
