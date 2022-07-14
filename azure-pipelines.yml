@@ -9,3 +9,5 @@ steps:
 
 - script: |
     echo "First pipeline script"
+    echo "Second line in script"
+    echo "Third line in script"
