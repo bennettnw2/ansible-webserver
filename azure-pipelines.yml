@@ -3,11 +3,16 @@ trigger:
   - master
 
 pool:
-  vmImage: 'ubuntu-20.04'
+  vmImage: 'default'
 
 steps:
 
 - script: |
-    echo "First pipeline script"
-    echo "Second line in script"
-    echo "Third line in script"
+    echo "First pipeline Script"
+    echo "Another line of code"
+
+- script: |
+    sudo apt update -y
+    sudo apt install -y ansible
+    ansible --version
+  displayName: "Installing Ansible"
