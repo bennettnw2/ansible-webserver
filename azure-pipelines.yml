@@ -3,7 +3,7 @@ trigger:
   - master
 
 pool:
-  name: 'ip-10-0-0-19'
+  name: 'default'
 
 steps:
 
