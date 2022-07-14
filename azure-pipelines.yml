@@ -27,7 +27,7 @@ steps:
   displayName: "Run ansible-lint"
 
 - script: |
-    ANSIBLE_HOST_KEY_CHECKING=False
+    ANSIBLE_HOST_KEY_CHECKING=False \
     ansible-playbook \
       -u ubuntu \
       -i ./host_inventory \
