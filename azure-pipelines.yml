@@ -3,7 +3,7 @@ trigger:
   - master
 
 pool:
-  vmImage: 'Default'
+  vmImage: 'ip-10-0-0-19'
 
 steps:
 
