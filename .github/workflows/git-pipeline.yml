@@ -1,7 +1,26 @@
 name: Ansible-Github Actions
 on: push
+
 jobs:
+
   repo_updated:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@master
+
+  install_ansible:
+    runs-on: self-hosted
+    steps:
+      - name: 'Installing Ansible'
+        run: |
+          sudo apt-get update -y
+          sudo apt install -y ansible ansible-lint
+          echo '*******Install Test*******'
+          which ansible ansible-lint
+
+  run_ansible_lint:
+    needs: [install_ansible]
+    runs-on: self-hosted
+    steps:
+      - name: 'Linting Ansible Playbooks'
+        run: ansible-lint
