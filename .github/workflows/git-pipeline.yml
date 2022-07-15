@@ -57,7 +57,7 @@ jobs:
           --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem'
 
   website-test:
-    needs: [website_update]
+    needs: [website-update]
     runs-on: self-hosted
     steps:
       - name: 'Website Testing'
