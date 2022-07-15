@@ -38,4 +38,4 @@ jobs:
           ansible-playbook -u ubuntu \
           -i $workdir/host_inventory \
           $workdir/playbooks/apache-install.yml \
-          --private-key 'home/ubuntu/.ssh/gp-13-july-22.pem'
+          --private-key '/home/ubuntu/.ssh/gp-13-july-22.pem'
