@@ -32,6 +32,8 @@ jobs:
       - name: 'Installing Apache'
         run: |
           workdir="${GITHUB_WORKSPACE}"
+          echo '*******Note Work Directory******* '
+          echo $workdir
           ANSIBLE_HOST_KEY_CHECKING=False \
           ansible-playbook -u ubuntu \
           -i $workdir/host_inventory \
